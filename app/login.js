@@ -6,6 +6,7 @@ import { Theme } from "../theme/Theme"
 import { AuthContext } from "../contexts/AuthContext"
 import { signInWithEmailAndPassword } from "@firebase/auth"
 import { router } from "expo-router"
+import { ImageBackground } from "react-native"
 
 export default function Login () {
     const auth = useContext( AuthContext )
@@ -21,14 +22,18 @@ export default function Login () {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
-            <AuthenticationForm title="Sign in to your account" action="Sign in" handler={SignIn}/>
-            <AlternateAuth 
-            text="Don't have an account?" 
-            route="/"
-            linkText="Sign up here"
-            />
+        
+         <SafeAreaView style={styles.container}>
+            <ImageBackground style={styles.ImageBackground} source={require("../assets/img.jpg")}>
+                <AuthenticationForm title="Sign in to your account" action="Sign in" handler={SignIn}/>
+                <AlternateAuth 
+                text="Don't have an account?" 
+                route="/"
+                linkText="Sign up here"
+                />
+            </ImageBackground>
         </SafeAreaView>
+       
     )
 }
 
@@ -37,5 +42,9 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: Theme.primaryDark,
         justifyContent: "center",
+    },
+    ImageBackground:{
+        flex:1,
+        justifyContent: 'center'
     },
 })
